@@ -2,44 +2,48 @@
 Library  SeleniumLibrary
 
 *** Variables ***
+#Open Browser
 ${HOMEPAGE}     https://devrpm.medris.ai/
 ${BROWSER}  chrome
-
+#Login and home page
+${USER-Detalis-email}         naren@interraneuro.com
+${User-Detalis-passwrod}      Nissi@123
+${email-field}   xpath=//*[@id="EmailAddress"]
+${password-field}   xpath=//*[@id="Password"]
+${show-password}    xpath=/html/body/div/div/div/div/div/div/div/form/div/div[3]/div[1]/label/span
+${login-button}     xpath=/html/body/div/div/div/div/div/div/div/form/div/div[3]/div[2]/button
+#Search Patients
+${Search-button}    xpath=//*[@id="mainTabs"]/li[1]
+${patient-Detalis-lastname}     sai
+${patient-Detalis-firstname}      Naren
+${patient-lastname}  xpath=//*[@id="txtLastname"]
+${patient-firstname}    xpath=//*[@id="txtFirstname"]
+${search1-button}   xpath=//*[@id="btnSearchPatients"]
 *** Test Cases ***
-LoginTest
+OpenBrowser
     open browser    ${HOMEPAGE}    ${BROWSER}
-    sleep   5
     maximize browser window
-    sleep   5
-    Login_and_home_page
-    Search_Patients
-    Select_Patients
-    sleep   5
-    close browser
 
-*** Keywords ***
 Login_and_home_page
-    input text     xpath=//*[@id="EmailAddress"]    naren@interraneuro.com
-    wait until element is visible  xpath=//*[@id="Password"]
-    input text     xpath=//*[@id="Password"]    Nissi@123
+    wait until element is visible  ${email-field}
     sleep   3
-    click element   xpath=/html/body/div/div/div/div/div/div/div/form/div/div[3]/div[1]/label/span
+    input text     ${email-field}    ${USER-Detalis-email}
     sleep   3
-    click element   xpath=/html/body/div/div/div/div/div/div/div/form/div/div[3]/div[2]/button
+    input text     ${password-field}    ${User-Detalis-passwrod}
+    sleep   3
+    click element   ${show-password}
+    sleep   3
+    click element   ${login-button}
     sleep   3
 
-*** Keywords ***
 Search_Patients
-    click element   xpath=//*[@id="mainTabs"]/li[1]
+    wait until element is visible  ${Search-button}
     sleep   3
-    input text      xpath=//*[@id="txtLastname"]     sai
+    click element   ${Search-button}
     sleep   3
-    input text      xpath=//*[@id="txtFirstname"]    Naren
+    input text      ${patient-lastname}     ${patient-Detalis-lastname}
     sleep   3
-    click element   xpath=//*[@id="btnSearchPatients"]
+    input text      ${patient-firstname}    ${patient-Detalis-firstname}
     sleep   3
-
-*** Keywords ***
-Select_Patients
-    click element   xpath=//*[@id="searchTable"]/tbody/tr[3]
+    click element   ${search1-button}
     sleep   3
