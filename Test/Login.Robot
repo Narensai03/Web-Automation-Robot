@@ -22,7 +22,6 @@ ${search1-button}   xpath=//*[@id="btnSearchPatients"]
 *** Test Cases ***
 OpenBrowser
     open browser    ${HOMEPAGE}    ${BROWSER}
-
     maximize browser window
 
 Login_and_home_page
