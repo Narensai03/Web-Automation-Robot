@@ -5,6 +5,7 @@ Library  SeleniumLibrary
 #Open Browser
 ${HOMEPAGE}     https://devrpm.medris.ai/
 ${BROWSER}  chrome
+
 #Login and home page
 ${USER-Detalis-email}         naren@interraneuro.com
 ${User-Detalis-passwrod}      Nissi@123
@@ -12,6 +13,7 @@ ${email-field}   xpath=//*[@id="EmailAddress"]
 ${password-field}   xpath=//*[@id="Password"]
 ${show-password}    xpath=/html/body/div/div/div/div/div/div/div/form/div/div[3]/div[1]/label/span
 ${login-button}     xpath=/html/body/div/div/div/div/div/div/div/form/div/div[3]/div[2]/button
+
 #Search Patients
 ${Search-button}    xpath=//*[@id="mainTabs"]/li[1]
 ${patient-Detalis-lastname}     sai
@@ -19,11 +21,16 @@ ${patient-Detalis-firstname}      Naren
 ${patient-lastname}  xpath=//*[@id="txtLastname"]
 ${patient-firstname}    xpath=//*[@id="txtFirstname"]
 ${search1-button}   xpath=//*[@id="btnSearchPatients"]
+
 *** Test Cases ***
-OpenBrowser
+LoginTest
     open browser    ${HOMEPAGE}    ${BROWSER}
     maximize browser window
+    Login_and_home_page
+    Search_Patients
+    close browser
 
+*** Keywords ***
 Login_and_home_page
     wait until element is visible  ${email-field}
     sleep   3
@@ -36,6 +43,7 @@ Login_and_home_page
     click element   ${login-button}
     sleep   3
 
+*** Keywords ***
 Search_Patients
     wait until element is visible  ${Search-button}
     sleep   3
