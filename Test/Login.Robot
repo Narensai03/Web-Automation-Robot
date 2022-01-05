@@ -13,13 +13,14 @@ LoginTest
     sleep   5
     Login_and_home_page
     Search_Patients
+    Select_Patients
     sleep   5
     close browser
 
 *** Keywords ***
 Login_and_home_page
     input text     xpath=//*[@id="EmailAddress"]    naren@interraneuro.com
-    sleep   3
+    wait until element is visible  xpath=//*[@id="Password"]
     input text     xpath=//*[@id="Password"]    Nissi@123
     sleep   3
     click element   xpath=/html/body/div/div/div/div/div/div/div/form/div/div[3]/div[1]/label/span
@@ -36,4 +37,9 @@ Search_Patients
     input text      xpath=//*[@id="txtFirstname"]    Naren
     sleep   3
     click element   xpath=//*[@id="btnSearchPatients"]
+    sleep   3
+
+*** Keywords ***
+Select_Patients
+    click element   xpath=//*[@id="searchTable"]/tbody/tr[3]
     sleep   3
